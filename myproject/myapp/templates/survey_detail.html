@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPS Survey</title>
+    <!-- Add your custom stylesheets or scripts here -->
+</head>
+<body>
+    <h1>NPS Survey</h1>
+    <form method="post" action="{% url 'submit_response' %}">
+        {% csrf_token %}
+        <label for="score">How likely are you to recommend our service/product to a friend or colleague?</label>
+        <select name="score" id="score">
+            {% for i in 0|range:11 %}
+                <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+    <!-- Add additional content or styling as needed -->
+</body>
+</html>
