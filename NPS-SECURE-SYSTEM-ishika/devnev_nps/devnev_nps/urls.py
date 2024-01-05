@@ -18,5 +18,5 @@ from django.urls import path , include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('nps.urls')),     """adding this line so that it can include url.py that is in nps directory"""
+    path('', include('nps.urls')),     
 ]
