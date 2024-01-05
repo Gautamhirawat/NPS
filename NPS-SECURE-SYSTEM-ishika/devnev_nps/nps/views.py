@@ -13,15 +13,3 @@ urlpatterns = [
 
 def home(request):
     return render(request, 'nps/home.html')
-
-def create_survey(request):
-    if request.method == 'POST':
-        form = SurveyForm(request.POST)
-        if form.is_valid():
-            survey = form.save()
-            # Additional logic if needed
-            return redirect('survey_list')  # Redirect to survey list page
-    else:
-        form = SurveyForm()
-
-    return render(request, 'create_survey.html', {'form': form})
