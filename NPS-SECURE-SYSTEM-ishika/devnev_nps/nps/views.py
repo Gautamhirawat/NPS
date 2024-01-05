@@ -9,12 +9,10 @@ from datetime import datetime
 def home(request):
     return render(request, 'nps/home.html')
 
+
 def save_survey(request):
     if request.method == 'POST':
         data = json.loads(request.body)
-
-        # Add timestamp to the data
-        data['timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         # Save data to a CSV file
         save_to_csv(data)
@@ -28,19 +26,40 @@ def save_to_csv(data):
 
     # Create or update the CSV file
     with open(file_path, 'a', newline='') as csv_file:
-        fieldnames = ['timestamp', 'name', 'contact', 'likability', 'recommendation', 'feedback']
+        fieldnames = ['timestamp', 'name', 'contact', 'likability', 'recommendation', 'feedback', 'promoter', 'passive', 'detractor']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
         # Check if the file is empty (write header if it is)
         if os.stat(file_path).st_size == 0:
             writer.writeheader()
 
+        # Classify the respondent as Promoter, Passive, or Detractor
+        likability = int(data['likability'])
+        if likability >= 9:
+            promoter = 1
+            passive = 0
+            detractor = 0
+        elif likability >= 7:
+            promoter = 0
+            passive = 1
+            detractor = 0
+        else:
+            promoter = 0
+            passive = 0
+            detractor = 1
+
+     
+
         # Write the survey data to the file
         writer.writerow({
             'timestamp': data['timestamp'],
             'name': data['name'],
             'contact': data['contact'],
-            'likability': data['likability'],
+            'likability': likability,
             'recommendation': data['recommendation'],
-            'feedback': data['feedback']
+            'feedback': data['feedback'],
+            'promoter': promoter,
+            'passive': passive,
+            'detractor': detractor,
+       
         })
