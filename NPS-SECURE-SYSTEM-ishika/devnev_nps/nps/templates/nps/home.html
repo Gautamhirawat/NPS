@@ -1,11 +1,47 @@
+<!-- home.html -->
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'home.js' %}" defer></script>
+    <title>Modern Home</title>
 </head>
 <body>
-    <h1>Welcome to My App!</h1>
-    <b>lol</b>
+    <header>
+        <h1>Welcome to Our Survey</h1>
+        <p>Answer the questions below:</p>
+    </header>
+
+    <section class="survey">
+        <h2>Take Our Survey</h2>
+        <form id="surveyForm">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="contact">Contact:</label>
+            <input type="text" id="contact" name="contact" required>
+
+            <label for="likability">How much do you like our product? (<span id="likabilityValue">0</span>-10):</label>
+            <input type="range" id="likability" name="likability" min="0" max="10" oninput="updateValue('likabilityValue', this.value)">
+
+            <label for="recommendation">How likely are you to recommend our product to others? (<span id="recommendationValue">0</span>-10):</label>
+            <input type="range" id="recommendation" name="recommendation" min="0" max="10" oninput="updateValue('recommendationValue', this.value)">
+        
+            <label for="feedback">Feedback:</label>
+            <textarea id="feedback" name="feedback"></textarea>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        <div id="thankYouMessage" style="display: none;"></div>
+    </section>
+
+    <footer>
+        &copy; 2024 Modern Home. All rights reserved.
+    </footer>
 </body>
 </html>
