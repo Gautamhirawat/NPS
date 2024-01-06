@@ -8,10 +8,16 @@
     <link rel="stylesheet" href="{% static 'home.css' %}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'home.js' %}" defer></script>
-    <title>Modern Home</title>
+    <title> Home</title>
 </head>
 <body>
     <header>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+            </ul>
+        </nav>
         <h1>Welcome to Our Survey</h1>
         <p>Answer the questions below:</p>
     </header>
