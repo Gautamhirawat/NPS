@@ -5,6 +5,46 @@ import json
 import os
 import csv
 from datetime import datetime
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect
+from django.views import View
+from django.contrib import messages
+
+class HomeView(View):
+    def get(self, request):
+        return render(request, 'home.html')
+
+class SignUpView(View):
+    def get(self, request):
+        return render(request, 'signup.html')
+
+    def post(self, request):
+        # Handle user registration logic
+        # ...
+
+        return redirect('login')
+
+class LoginView(View):
+    def get(self, request):
+        return render(request, 'login.html')
+
+    def post(self, request):
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'Invalid username or password.')
+            return redirect('login')
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect('home')
+
 
 def home(request):
     return render(request, 'nps/home.html')
