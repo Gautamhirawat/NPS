@@ -1,0 +1,28 @@
+<!-- nps/templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- your head content... -->
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <!-- your other navigation links... -->
+            </ul>
+        </nav>
+        <!-- your header content... -->
+    </header>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <!-- your footer content... -->
+    </footer>
+</body>
+</html>
