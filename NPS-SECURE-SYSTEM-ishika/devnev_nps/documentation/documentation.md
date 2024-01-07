@@ -1,5 +1,5 @@
 # Project Documentation : AI-Powered NPS
-# Document is currently under editing and reviewing phase 
+ Document is currently under editing and reviewing phase 
 
 ## 1. Project Overview
 
@@ -30,26 +30,42 @@ Integrate the following APIs provided by the DevRev platform [Refer to the DevRe
 Programming Language and Tools:
 
 Python:
+
 The Snap-In is developed using Python-Django Framework with PostgreSQL, so ensure the latest version of both Python and Django is installed.
+
 Respective versions used during the development process:-
+
 Python 3.12.1
+
 Django 3.2.8
+
 PostgreSQL 16
 
 Package Manager:
+
 A package manager like pip is necessary to install Python dependencies.
 Additional Libraries and Frameworks:
 
 Django: 3.2.8
+
 djangorestframework: 3.12.4
+
 django-cors-headers: 3.7.0
+
 django-environ: 0.11.1
+
 django-wtf: 0.1.1
+
 gunicorn: 20.1.0
+
 psycopg2: 2.9.1
+
 psycopg2-binary: 2.9.1
+
 scikit-learn: 0.24.2
+
 nltk: 3.6.2
+
 spaCy: 3.0.7
 
 Development Environment:
@@ -59,15 +75,19 @@ Set up a suitable development environment, such as an Integrated Development Env
 Database:
 
 Depending on the project requirements, set up a compatible database system. Ensure the necessary drivers are installed.
+
 API Key(s):
 
 Obtain any required API keys or credentials for third-party services or integrations. Manage these securely following best practices.
+
 Version Control System:
 
 Use a version control system (e.g., Git) to track changes and collaborate effectively with team members.
+
 Command-Line Interface (CLI):
 
 A command-line interface may be necessary for various tasks during setup and development.
+
 Virtual Environment:
 
 Consider using a virtual environment to isolate project dependencies and avoid conflicts with system-wide packages.
@@ -184,7 +204,7 @@ Guidelines on integrating analytics tools for tracking user behavior and feedbac
 
 ### 13.1 Common Issues:
 
-A list of common issues and their resolutions assists users and developers in addressing potential challenges.
+A list of common issues and their resolutions assists users and developers in addressing potential challenges is as listed below.
 
 ### 13.2 FAQs:
 
@@ -204,7 +224,11 @@ Guidelines for making continuous improvements to the project ensure the sustaine
 
 ### 15.1 Contributors:
 
-A list of project contributors and their respective roles acknowledges the collaborative effort.
+List of project contributors and their respective roles:
+
+Gautam Hirawat - (role)
+
+Ishika Dutta - (role)
 
 ### 15.2 Acknowledgments:
 
@@ -221,6 +245,14 @@ Details on the project's licensing terms ensure compliance with legal requiremen
 ### 17.1 Project Contact:
 
 Providing contact information for project inquiries or support ensures effective communication.
+
+Gautam Hirawat (https://github.com/Gautamhirawat)
+
+Email - 
+
+Ishika Dutta (https://github.com/I-Ishika-012)
+
+Email - 
 
 ## 18. Revision History
 
