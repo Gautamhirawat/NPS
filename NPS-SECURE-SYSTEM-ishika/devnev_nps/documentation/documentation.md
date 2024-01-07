@@ -46,15 +46,23 @@ Package Manager:
 A package manager like pip is necessary to install Python dependencies.
 Additional Libraries and Frameworks:
 
-Django: 3.2.8
+Django: 4.1.13
 
-djangorestframework: 3.12.4
+djangorestframework: 3.14.0
 
-django-cors-headers: 3.7.0
+django-cors-headers: 4.3.1
 
-django-environ: 0.11.1
+django-environ: 0.11.2
+
+django-dotenv: 1.4.2
 
 django-wtf: 0.1.1
+
+django-check-migration-wtf: 1.4.0
+
+requests: 2.31.0
+
+wtforms: 3.1.1
 
 gunicorn: 20.1.0
 
