@@ -26,7 +26,7 @@ Unacceptable behaviors include, but are not limited to:
 
 ## Reporting Guidelines
 
-If you are subject to or witness unacceptable behavior, or have any other concerns, please report it to the project maintainers or administrators. You can contact us via email at gautamhirawat@gmail.com.
+If you are subject to or witness unacceptable behavior, or have any other concerns, please report it to the project maintainers or administrators. You can contact us via email at gautamhirawat2609@gmail.com.
 
 ## Enforcement
 
