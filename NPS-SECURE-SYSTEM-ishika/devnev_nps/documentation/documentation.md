@@ -37,7 +37,7 @@ Respective versions used during the development process:-
 
 Python 3.12.1
 
-Django 3.2.8
+Django 4.1.13
 
 PostgreSQL 16
 
