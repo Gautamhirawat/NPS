@@ -45,21 +45,26 @@ class LogoutView(View):
         logout(request)
         return redirect('home')
 
-
 def home(request):
     return render(request, 'nps/home.html')
 
-
 def save_survey(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
+    try:
+        if request.method == 'POST':
+            # Decode the request body before loading it as JSON
+            request_body = request.body.decode('utf-8')
+            data = json.loads(request_body)
 
-        # Save data to a CSV file
-        save_to_csv(data)
+            # Save data to a CSV file
+            save_to_csv(data)
 
-        return JsonResponse({'status': 'success'})
-    else:
-        return JsonResponse({'status': 'error'})
+            return JsonResponse({'status': 'success'})
+    except json.JSONDecodeError as e:
+        return JsonResponse({'status': 'error', 'message': 'Invalid JSON data'}, status=400)
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)
 
 def save_to_csv(data):
     file_path = 'survey_data.csv'
@@ -75,31 +80,24 @@ def save_to_csv(data):
 
         # Classify the respondent as Promoter, Passive, or Detractor
         likability = int(data['likability'])
+        promoter, passive, detractor = 0, 0, 0
+
         if likability >= 9:
             promoter = 1
-            passive = 0
-            detractor = 0
         elif likability >= 7:
-            promoter = 0
             passive = 1
-            detractor = 0
         else:
-            promoter = 0
-            passive = 0
             detractor = 1
-
-     
 
         # Write the survey data to the file
         writer.writerow({
-            'timestamp': data['timestamp'],
-            'name': data['name'],
-            'contact': data['contact'],
+            'timestamp': data.get('timestamp', ''),
+            'name': data.get('name', ''),
+            'contact': data.get('contact', ''),
             'likability': likability,
-            'recommendation': data['recommendation'],
-            'feedback': data['feedback'],
+            'recommendation': data.get('recommendation', ''),
+            'feedback': data.get('feedback', ''),
             'promoter': promoter,
             'passive': passive,
             'detractor': detractor,
-       
         })
