@@ -14,38 +14,21 @@ document.addEventListener('DOMContentLoaded', function () {
         // Send the AJAX request
         fetch('/save_survey/', {
             method: 'POST',
+            headers: {
+                'X-CSRFToken': csrf_token,
+            },
             body: formData,
         })
         .then(response => response.json())
         .then(data => {
             console.log(data);
             // Handle the response as needed
+            // For example, you can redirect to a thank-you page
+            window.location.href = '/thank_you/';
         })
         .catch(error => console.error('Error:', error));
     });
 });
-
-function sendDataToServer(formData) {
-    // Add timestamp to the data
-    formData.append('timestamp', new Date().toISOString());
-
-    fetch('/save_survey/', {
-        method: 'POST',
-        headers: {
-            'X-CSRFToken': getCookie('csrftoken')
-        },
-        body: formData,
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-        // Redirect to the thank-you HTML page
-        window.location.href = 'thank_you';
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-}
 
 function getCookie(name) {
     var cookieValue = null;
