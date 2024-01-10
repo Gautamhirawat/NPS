@@ -13,7 +13,7 @@ class Survey(models.Model):
     target_audience = models.ManyToManyField(TargetAudience)
 
     def __str__(self):
-        return self.title
+        return self.title   
 
 
 
