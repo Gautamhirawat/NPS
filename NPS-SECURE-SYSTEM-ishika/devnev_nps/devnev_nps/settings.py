@@ -76,11 +76,14 @@ WSGI_APPLICATION = 'devnev_nps.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': "db.sqlite3",
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'gautam',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
-
 
 # settings.py
 
