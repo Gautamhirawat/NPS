@@ -9,36 +9,52 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
+from .forms import SignUpForm, LoginForm
 
 class HomeView(View):
     def get(self, request):
         return render(request, 'home.html')
 
+
+
+
 class SignUpView(View):
     def get(self, request):
-        return render(request, 'signup.html')
+        form = SignUpForm()
+        return render(request, 'signup.html', {'form': form})
 
     def post(self, request):
-        # Handle user registration logic
-        # ...
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            # Handle user registration logic and create a new user
+            # ...
 
-        return redirect('login')
+            messages.success(request, 'Registration successful. You can now log in.')
+            return redirect('login')
+
+        return render(request, 'signup.html', {'form': form})
 
 class LoginView(View):
     def get(self, request):
-        return render(request, 'login.html')
+        form = LoginForm()
+        return render(request, 'login.html', {'form': form})
 
     def post(self, request):
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
 
-        if user is not None:
-            login(request, user)
-            return redirect('home')
-        else:
-            messages.error(request, 'Invalid username or password.')
-            return redirect('login')
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                messages.error(request, 'Invalid username or password.')
+                return redirect('login')
+
+        return render(request, 'login.html', {'form': form})
+
 
 class LogoutView(View):
     def get(self, request):
