@@ -1,7 +1,3 @@
-// home.js
-function updateValue(spanId, value) {
-    document.getElementById(spanId).innerText = value;
-}
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('surveyForm').addEventListener('submit', function (event) {
         event.preventDefault();
@@ -26,30 +22,19 @@ document.addEventListener('DOMContentLoaded', function () {
             // Handle the response as needed
         })
         .catch(error => console.error('Error:', error));
-        var formData = {
-            'name': document.getElementById('name').value,
-            'contact': document.getElementById('contact').value,
-            'likability': document.getElementById('likability').value,
-            'recommendation': document.getElementById('recommendation').value,
-            'feedback': document.getElementById('feedback').value
-        };
-
-        // Send the data to the server
-        sendDataToServer(formData);
     });
 });
 
 function sendDataToServer(formData) {
     // Add timestamp to the data
-    formData['timestamp'] = new Date().toISOString();
+    formData.append('timestamp', new Date().toISOString());
 
     fetch('/save_survey/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
             'X-CSRFToken': getCookie('csrftoken')
         },
-        body: JSON.stringify(formData),
+        body: formData,
     })
     .then(response => response.json())
     .then(data => {
